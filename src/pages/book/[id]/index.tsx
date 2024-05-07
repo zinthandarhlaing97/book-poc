@@ -1,29 +1,15 @@
 import Layout from "@/components/Layout";
-import { BookContext } from "@/contexts/book.context";
 import { getBooks } from "@/services/books.service";
-import { IBookResponse } from "@/types/book";
+import { IBookData } from "@/types/book";
 import { formatDate } from "@/utils/date.format.utils";
 import { Box, Grid, Typography } from "@mui/material";
-import { GetStaticPaths } from "next";
-import { useRouter } from "next/router";
-import { useContext, useEffect } from "react";
+import { GetServerSideProps } from "next";
 
 type BookDetailsPageProps = {
-  response: IBookResponse;
+  book?: IBookData | undefined;
 };
 
-export default function BookDetailsPage({ response }: BookDetailsPageProps) {
-  const { books, setBooks } = useContext(BookContext);
-  const { query } = useRouter();
-
-  const book = books.find((book) => book.id === Number(query.id));
-
-  useEffect(() => {
-    if (books.length === 0) {
-      setBooks(response.data);
-    }
-  }, []);
-
+export default function BookDetailsPage({ book }: BookDetailsPageProps) {
   return (
     <Layout>
       <Grid container spacing={2}>
@@ -51,21 +37,12 @@ export default function BookDetailsPage({ response }: BookDetailsPageProps) {
   );
 }
 
-export async function getStaticProps() {
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { id } = context.params!;
   const response = await getBooks();
+  const book = response.data.find((book) => book.id === Number(id));
 
   return {
-    props: { response },
+    props: { book },
   };
-}
-
-export const getStaticPaths = (async () => {
-  const response = await getBooks();
-
-  return {
-    paths: response.data.map((book) => ({
-      params: { id: String(book.id) },
-    })),
-    fallback: true,
-  };
-}) satisfies GetStaticPaths;
+};

@@ -30,7 +30,7 @@ export default function Book({ response }: BookPageProps) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const response = await getBooks();
 
   return {

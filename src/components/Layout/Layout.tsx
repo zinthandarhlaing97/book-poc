@@ -1,36 +1,20 @@
-import { Box } from "@mui/material";
 import React from "react";
-import BackToTop from "./BackToTop";
-import Header from "./Header";
+
+import styles from "../../styles/Layout.module.css";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <Box
-      sx={{
-        position: "relative",
-        display: "flex",
-        flexDirection: "column",
-        minHeight: "100vh",
-        backgroundColor: "background.default",
-        overflowX: "hidden",
-      }}
-    >
-      <Header />
-
-      <Box
-        component="main"
-        sx={{
-          flex: 1,
-          display: "flex",
-          flexDirection: "column",
-          p: { xs: 2, md: 4 },
-        }}
-      >
-        {children}
-      </Box>
-
-      <BackToTop />
-    </Box>
+    <div className={styles.main}>
+      <div style={{ width: "100%" }}>
+        <div className={styles.grid}>
+          <div className={styles.gradient}>
+            <main id="main-editor" className={styles.content}>
+              {children}
+            </main>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 

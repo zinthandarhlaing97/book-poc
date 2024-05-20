@@ -1,9 +1,10 @@
 import Layout from "@/components/Layout";
 import { getBooks } from "@/services/books.service";
 import { IBookData } from "@/types/book";
-import { formatDate } from "@/utils/date.format.utils";
-import { Box, Grid, Typography } from "@mui/material";
 import { GetServerSideProps } from "next";
+import styles from "../../../styles/BookPage.module.css";
+import { formatDate } from "@/utils/date.format.utils";
+import Link from "next/link";
 
 type BookDetailsPageProps = {
   book?: IBookData | undefined;
@@ -12,27 +13,36 @@ type BookDetailsPageProps = {
 export default function BookDetailsPage({ book }: BookDetailsPageProps) {
   return (
     <Layout>
-      <Grid container spacing={2}>
-        <Grid item xs={12} md={6} lg={4}>
-          <img src={book?.image} alt={book?.title} />
-        </Grid>
-        <Grid item xs={12} md={6} lg={8}>
-          <Box>
-            <Typography variant="h4">{book?.title}</Typography>
-            <Typography>{book?.description}</Typography>
-          </Box>
-          <Box sx={{ height: "24px" }}></Box>
-          <Box>
-            <Typography>Genre: {book?.genre}</Typography>
-            <Typography>Isbn: {book?.isbn}</Typography>
-            <Typography>
-              Published Date:
-              {book?.published ? formatDate(new Date(book.published)) : ""}
-            </Typography>
-            <Typography>Publisher: {book?.publisher}</Typography>
-          </Box>
-        </Grid>
-      </Grid>
+      <div className={styles.nav}>
+        <h3>
+          Go Back to{" "}
+          <Link href="/book" rel="noopener" className={styles.underline}>
+            Book Store
+          </Link>
+        </h3>
+      </div>
+
+      <div className={styles.container}>
+        <div className="bookimg"></div>
+        <div className={styles.content}>
+          <h1>{book?.title}</h1>
+          <h5>{book?.author}</h5>
+          <p>{book?.description}</p>
+          <span>
+            Genre: <b>{book?.genre}</b>
+          </span>
+          <span>
+            ISBN: <b>{book?.isbn}</b>
+          </span>
+          <span>
+            Publisher: <b>{book?.publisher}</b>
+          </span>
+          <span>
+            Published At:{" "}
+            <b>{book?.published ? formatDate(new Date(book.published)) : ""}</b>
+          </span>
+        </div>
+      </div>
     </Layout>
   );
 }

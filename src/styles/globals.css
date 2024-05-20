@@ -1,22 +1,34 @@
-:root {
-  body {
-    background-color: #ffffff;
-    color: rgba(0, 0, 0, 0.87);
-  }
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
+.tag {
+  background: #ffd25e40;
 }
 
-[data-theme="dark"] {
-  body {
-    background-color: #1c1c1c;
-    color: #ffffff;
-  }
-}
-
-[data-theme="dark"] [data-hide-on-theme="dark"],
-[data-theme="light"] [data-hide-on-theme="light"] {
-  display: none;
+.bookimg {
+  width: 100%;
+  height: 300px;
+  border-radius: 20px;
+  background: linear-gradient(324deg, var(--accent-color) 4%, transparent 4%) -70px
+      43px,
+    linear-gradient(36deg, var(--accent-color) 4%, transparent 4%) 30px 43px,
+    linear-gradient(72deg, #e3d7bf 8.5%, transparent 8.5%) 30px 43px,
+    linear-gradient(288deg, #e3d7bf 8.5%, transparent 8.5%) -70px 43px,
+    linear-gradient(216deg, #e3d7bf 7.5%, transparent 7.5%) -70px 23px,
+    linear-gradient(144deg, #e3d7bf 7.5%, transparent 7.5%) 30px 23px,
+    linear-gradient(324deg, var(--accent-color) 4%, transparent 4%) -20px 93px,
+    linear-gradient(36deg, var(--accent-color) 4%, transparent 4%) 80px 93px,
+    linear-gradient(72deg, #e3d7bf 8.5%, transparent 8.5%) 80px 93px,
+    linear-gradient(288deg, #e3d7bf 8.5%, transparent 8.5%) -20px 93px,
+    linear-gradient(216deg, #e3d7bf 7.5%, transparent 7.5%) -20px 73px,
+    linear-gradient(144deg, #e3d7bf 7.5%, transparent 7.5%) 80px 73px;
+  background-color: var(--accent-color);
+  background-size: 100px 100px;
 }

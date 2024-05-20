@@ -1,31 +1,36 @@
-import BooksTable from "@/components/BooksTable";
+import Illustration from "@/components/Illustration";
 import Layout from "@/components/Layout/Layout";
-import { BookContext } from "@/contexts/book.context";
 import { getBooks } from "@/services/books.service";
 import { IBookResponse } from "@/types/book";
-import { Typography } from "@mui/material";
-import { useContext, useEffect } from "react";
+import styles from "../../styles/BooksPage.module.css";
+import BookCard from "@/components/BookCard";
 
 type BookPageProps = {
   response: IBookResponse;
 };
 
 export default function Book({ response }: BookPageProps) {
-  const { setBooks } = useContext(BookContext);
-
-  useEffect(() => {
-    setBooks(response.data);
-  }, []);
-
   return (
     <Layout>
-      <Typography
-        variant="h3"
-        sx={{ pb: { xs: 2, md: 4 }, textAlign: "center" }}
-      >
-        Book
-      </Typography>
-      <BooksTable books={response.data} />
+      <div className={styles.foreground}>
+        <div className={styles.content}>
+          <h1 className={styles.quote}>
+            {`“There is more treasure in books than in all the pirate's loot on
+            Treasure Island.”`}
+          </h1>
+          <h3 className={styles.by}>- Walt Disney</h3>
+        </div>
+        <Illustration className={styles.illustration} />
+      </div>
+
+      <div className={styles.container}>
+        <h1 className={styles.title}>Available Books</h1>
+        <div className={styles.listview}>
+          {response.data.map((book) => (
+            <BookCard key={book.id} book={book} />
+          ))}
+        </div>
+      </div>
     </Layout>
   );
 }

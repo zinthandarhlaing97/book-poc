@@ -23,7 +23,7 @@ const BookCard: FC<BooksCardProps> = ({ book }) => {
             {book.publisher}
             {` (${
               book.published ? formatDate(new Date(book.published)) : "-"
-            }})`}
+            })`}
           </span>
         </div>
         <div className={styles.cta}>

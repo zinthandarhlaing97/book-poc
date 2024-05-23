@@ -1,0 +1,126 @@
+.foreground {
+  display: flex;
+  justify-content: space-evenly;
+  padding-bottom: 2rem;
+  border-bottom: 7px ridge var(--accent-color);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+}
+
+.quote {
+  color: var(--text-color);
+  text-align: left;
+  margin-bottom: 2rem;
+  font-style: oblique;
+}
+
+.by {
+  color: var(--text-color);
+  text-align: left;
+  margin-bottom: 3rem;
+}
+
+.illustration {
+  height: 400px;
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 0 0 0;
+  justify-content: center;
+}
+
+.title {
+  text-align: center;
+}
+
+.listview {
+  margin: 2rem 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+/* 4K Screens */
+@media screen and (min-width: 2000px) {
+  .content {
+    padding: 0 3rem;
+  }
+  .quote {
+    font-size: 6rem;
+  }
+  .by {
+    font-size: 3rem;
+  }
+  .illustration {
+    height: 800px;
+    width: 900px;
+  }
+}
+
+/* iPad Pro */
+@media screen and (max-width: 1100px) {
+  .foreground {
+    margin: 0;
+  }
+  .quote {
+    font-size: 2rem;
+  }
+  .by {
+    font-size: 1.25rem;
+  }
+  .illustration {
+    height: 320px;
+    width: 420px;
+  }
+}
+
+/* iPad */
+@media screen and (max-width: 900px) {
+  .foreground {
+    margin: 0;
+  }
+  .quote {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+  .by {
+    font-size: 0.75rem;
+  }
+  .illustration {
+    height: 260px;
+    width: 360px;
+  }
+}
+
+/* Phone */
+@media screen and (max-width: 600px) {
+  .content {
+    align-items: center;
+  }
+  .foreground {
+    margin: 0;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+  .quote {
+    font-size: 1rem;
+    text-align: center;
+  }
+  .by {
+    font-size: 0.75rem;
+    text-align: center;
+  }
+  .illustration {
+    width: 200px;
+    height: 250px;
+  }
+}
